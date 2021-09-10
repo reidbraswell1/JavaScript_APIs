@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript APIs</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <main id="main">
@@ -16,6 +23,16 @@
         </p>
         <div id="inputContainer">
           <!-- Add label, input, and button HERE -->
+          <form
+            id="exercise-form"
+            action="javascript:controller()"
+            method="POST"
+            onsubmit="return validateForm()"
+          >
+            <label for="input">Label</label>
+            <input id="input" type="text" />
+            <button id="submit-button" type="submit">Submit</button>
+          </form>
         </div>
 
         <div id="imageContainer" style="max-width: 680px">
