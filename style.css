@@ -1,6 +1,36 @@
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+
+}
+
 #main {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+#exercise-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+label {
+    margin-left: 33%;
+}
+
+input {
+    margin-left: 33%;
+}
+
+#submit-button {
+  align-self: center;
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 900;
 }
