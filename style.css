@@ -21,11 +21,14 @@ body {
 }
 
 label {
-    margin-left: 32%;
+    margin-left: 25%;
+    font-size: 1.2rem;;
 }
 
-input {
-    margin-left: 32%;
+#gifSearch {
+    margin-left: 25%;
+    margin-top: .5rem;
+    font-size: 1.3rem;
 }
 
 #submit-button {
@@ -33,4 +36,15 @@ input {
   margin: 1rem 0;
   font-size: 1.5rem;
   font-weight: 900;
+}
+
+#image-container {
+  max-width: 40rem;
+}
+
+.images {
+  width: 30%; 
+  height: auto;
+  border: .5rem solid #f5f5f5;
+  margin: 0 .08rem;
 }
