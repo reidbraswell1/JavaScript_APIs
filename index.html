@@ -1,50 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript APIs</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <main id="main">
-      <div>
-        <h1>JavaScript APIs</h1>
-        <p>
-          Open the Browser Console to view your work (Right-Click => Inspect or
-          fn+F12)
-        </p>
-        <div id="inputContainer">
-          <!-- Add label, input, and button HERE -->
-          <form
-            id="exercise-form"
-            action="javascript:controller()"
-            method="POST"
-            onsubmit="return validateForm()"
-          >
-            <label for="gif-search">Label</label>
-            <input id="gif-search" type="text" />
-            <button id="submit-button" type="submit">Submit</button>
-          </form>
-        </div>
 
-        <div id="imageContainer" style="max-width: 680px">
-          <img
-            src="#"
-            alt="Giphy Selection"
-            style="width: 100%; height: auto"
-          />
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript APIs</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <main id="main">
+    <div>
+      <h1>JavaScript APIs</h1>
+      <p>
+        Open the Browser Console to view your work (Right-Click => Inspect or
+        fn+F12)
+      </p>
+      <div id="inputContainer">
+        <!-- Add label, input, and button HERE -->
+        <form id="exercise-form" action="javascript:controller(gifSearch.value)" method="POST" onsubmit="return validateForm(gifSearch.value)">
+          <label for="gifSearch">Giphy Search</label>
+          <input id="gifSearch" type="text" required/>
+          <button id="submit-button" type="submit">Submit</button>
+        </form>
       </div>
-    </main>
 
-    <script src="app.js"></script>
-  </body>
+      <div id="image-container">
+        <img id="img1" src="#" alt="Giphy 1" class="images" />
+        <img id="img2" src="#" alt="Giphy 2" class="images" />
+        <img id="img3" src="#" alt="Giphy 3" class="images" />
+        <img id="img4" src="#" alt="Giphy 4" class="images" />
+        <img id="img5" src="#" alt="Giphy 5" class="images" />
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
 </html>
