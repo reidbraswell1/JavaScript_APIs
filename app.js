@@ -19,6 +19,15 @@ function controller(inputSearch) {
         "Response returned to getGiph = " + JSON.stringify(response, null, 2)
       );
       blankImages();
+      let errorLine = document.getElementById("error-line");
+      let returnedLine = document.getElementById("returned-line");
+      errorLine.innerText="";
+      returnedLine.innerText=`${response.length}`;
+      returnedLine.style.color="green";
+      if(response.length == 0) {
+          errorLine.innerText=`Error no information available on search key "${inputSearch}"`;
+          errorLine.style.color="red";
+      }
       for (let i = 0; i < response.length; i++) {
         console.log(`urls=${response[i].images.original.url}`);
         console.log(response[i].images.original.url);
