@@ -25,6 +25,9 @@ function controller(searchKey) {
   console.log(`Parameters=${searchKey}`);
   getGiph(searchKey)
     .then(function (response) {
+      if(response == null) {
+        throw new Error("Error has occured in fetch");
+      }
       console.log("getGiph Promise fulfilled response returned response below");
       console.log(response);
       /* response will contain an array of objects
@@ -68,6 +71,10 @@ async function getGiph(searchKey) {
     })
     .catch(function (error) {
       console.log(`Fetch error=${error}`);
+      let errorLine = document.getElementById("error-line");
+      errorLine.innerText="An error occured when fetching the giph image - check console logs.";
+      errorLine.style.color="red";
+      arrayObj = null;
     });
     return arrayObj;
 }
