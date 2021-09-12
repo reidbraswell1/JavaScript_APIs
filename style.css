@@ -42,12 +42,18 @@ label {
 
 #image-container {
   max-width: 40rem;
+  background-color: #f5f5f5;
+  padding-bottom: .05rem;
+}
+
+#returned-line {
+  padding-top: .5rem;
 }
 
 .images {
   width: 30%; 
   height: auto;
-  border: .5rem solid #f5f5f5;
-  margin: 0 .08rem;
+  border: .4rem solid #999999;
+  margin: .1rem 0;
   visibility: hidden;
 }
