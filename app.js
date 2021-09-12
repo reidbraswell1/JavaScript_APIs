@@ -23,7 +23,23 @@ function blankImages(prefix) {
 function controller(searchKey) {
   console.log("---Begin controller()---");
   console.log(`Parameters=${searchKey}`);
+  getGiph(searchKey)
+    .then(function (response) {
+      console.log("getGiph Promise fulfilled response returned response below");
+      console.log(response);
+      /* response will contain an array of objects
+         inside the array of objects we will obtain the 
+         url to display.
+      */
+      populateImages(response, searchKey);
+      document.getElementById("exercise-form").reset();
+    })
+    .catch(function (error) {
+      console.log(`getGiph error=${error}`);
+    });
+}
 
+async function getGiph(searchKey) {
   const baseURL = "https://api.giphy.com/v1/gifs/search?";
   const apiKey = "api_key=mUiZ6FGejMTommITwThDmUr016iX5GAG";
   const query = "&q=";
@@ -32,7 +48,9 @@ function controller(searchKey) {
 
   console.log(`fetchURL=${fetchURL}`);
 
-  fetch(fetchURL, { mode: "cors" })
+  let arrayObj;
+
+  await fetch(fetchURL, { mode: "cors" })
     .then(function (response) {
       console.log("1st then fetch promise response - ");
       console.log(response);
@@ -42,22 +60,22 @@ function controller(searchKey) {
       console.log("2nd then fetch promise response");
       console.log(response);
       console.log(JSON.stringify(response, null, 2));
+      arrayObj=response.data;
       /* response.data will contain an array of objects
          inside the array of objects we will obtain the 
          url to display.
       */
-      populateImages(response.data,searchKey);
-      document.getElementById("exercise-form").reset();      
     })
     .catch(function (error) {
-      console.log(`Error occured during fetch = ${error}`);
+      console.log(`Fetch error=${error}`);
     });
+    return arrayObj;
 }
 
 /* Helper function to populate the image tags
    with the correct url's returned from the api
 */
-function populateImages(response,searchKey) {
+function populateImages(response, searchKey) {
   blankImages("image-");
   let errorLine = document.getElementById("error-line");
   let returnedLine = document.getElementById("returned-line");
