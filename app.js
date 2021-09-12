@@ -3,62 +3,26 @@ console.log("Hello World!\n==========\n");
 // Exercise 1 Section
 console.log("EXERCISE 1:\n==========\n");
 
-function blankImages() {
-    img1.src = "#";
-    img2.src = "#";
-    img3.src = "#";
-    img4.src = "#";
-    img5.src = "#";
-}
-function controller(inputSearch) {
-  console.log("---Begin controller()---");
-  console.log(`Parameters=${inputSearch}`);
-  getGiph(inputSearch)
-    .then(function (response, reject) {
-      console.log(
-        "Response returned to getGiph = " + JSON.stringify(response, null, 2)
-      );
-      blankImages();
-      let errorLine = document.getElementById("error-line");
-      let returnedLine = document.getElementById("returned-line");
-      errorLine.innerText="";
-      returnedLine.innerText=`${response.length}`;
-      returnedLine.style.color="green";
-      if(response.length == 0) {
-          errorLine.innerText=`Error no information available on search key "${inputSearch}"`;
-          errorLine.style.color="red";
-      }
-      for (let i = 0; i < response.length; i++) {
-        console.log(`urls=${response[i].images.original.url}`);
-        console.log(response[i].images.original.url);
-        switch (i) {
-          case 0:
-            img1.src = response[i].images.original.url;
-            break;
-          case 1:
-            img2.src = response[i].images.original.url;
-            break;
-          case 2:
-            img3.src = response[i].images.original.url;
-            break;
-          case 3:
-            img4.src = response[i].images.original.url;
-            break;
-          case 4:
-            img5.src = response[i].images.original.url;
-            break;
-        }
-      }
-    })
-    .catch(function (error) {
-      console.log(`An Error has occurred = ${error}`);
-    });
-    document.getElementById("exercise-form").reset();
+/* 
+   Change visibility to hidden
+   and change src on all images
+   to #
+*/
+function blankImages(prefix) {
+  for (let i = 1; i <= 5; i++) {
+    let imageObj = document.getElementById(`${prefix}${i}`);
+    imageObj.src = "#";
+    imageObj.style.visibility = "hidden";
+  }
 }
 
-async function getGiph(searchKey) {
-  console.log("---Begin getGiph()---");
-  console.log(`Parameters=${searchKey}`)
+/*
+  Main controlling function called by
+  action on the form
+*/
+function controller(searchKey) {
+  console.log("---Begin controller()---");
+  console.log(`Parameters=${searchKey}`);
 
   const baseURL = "https://api.giphy.com/v1/gifs/search?";
   const apiKey = "api_key=mUiZ6FGejMTommITwThDmUr016iX5GAG";
@@ -68,40 +32,52 @@ async function getGiph(searchKey) {
 
   console.log(`fetchURL=${fetchURL}`);
 
-  let jsonResponse;
-  let url;
-
-  return await fetch(fetchURL, { mode: "cors" })
-    /*
-    .then(function(response) {
-        console.log("Response 1");
-        console.log(response);
-        return response.json();
-    })
-    .then(function(response) {
-        console.log("Response 2");
-        console.log(response.data[0].url);
-        return response;
-    })
-    .catch(function(error) {
-        console.log("An Error Occurred");
-    });
-    */
+  fetch(fetchURL, { mode: "cors" })
     .then(function (response) {
-      console.log("Response 3");
+      console.log("1st then fetch promise response - ");
       console.log(response);
       return response.json();
     })
     .then(function (response) {
-      console.log("Response 4");
+      console.log("2nd then fetch promise response");
       console.log(response);
-      return response.data;
+      console.log(JSON.stringify(response, null, 2));
+      /* response.data will contain an array of objects
+         inside the array of objects we will obtain the 
+         url to display.
+      */
+      populateImages(response.data,searchKey);
+      document.getElementById("exercise-form").reset();      
     })
     .catch(function (error) {
-      console.log(`Error=${error}`);
+      console.log(`Error occured during fetch = ${error}`);
     });
 }
 
+/* Helper function to populate the image tags
+   with the correct url's returned from the api
+*/
+function populateImages(response,searchKey) {
+  blankImages("image-");
+  let errorLine = document.getElementById("error-line");
+  let returnedLine = document.getElementById("returned-line");
+  errorLine.innerText = "";
+  returnedLine.innerText = `${response.length}-"${searchKey}"`;
+  returnedLine.style.color = "green";
+  if (response.length == 0) {
+    errorLine.innerText = `Error no information available on search key "${searchKey}"`;
+    errorLine.style.color = "red";
+  }
+  for (let i = 0; i < response.length; i++) {
+    console.log(`urls=${response[i].images.original.url}`);
+    console.log(response[i].images.original.url);
+    let image = document.getElementById(`image-${i + 1}`);
+    image.src = response[i].images.original.url;
+    image.style.visibility = "visible";
+  }
+}
+
+// Form Validation called by onsubmit on form
 function validateForm(searchKey) {
   console.log("---Begin validateForm()---");
   console.log(`Parameters=${searchKey}`);
