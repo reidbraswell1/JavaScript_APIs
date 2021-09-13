@@ -3,6 +3,35 @@ console.log("Hello World!\n==========\n");
 // Exercise 1 Section
 console.log("EXERCISE 1:\n==========\n");
 
+document.getElementById("theme").addEventListener("change", themeChange);
+
+// Fucntion to change the theme colors of the page
+function themeChange() {
+  console.log("---Begin themeChange()---");
+
+  const colorBlack = "black";
+  const colorWhite = "white";
+  const lightTheme = "light";
+  const darkTheme = "dark";
+
+  let html = document.getElementById("html");
+
+  switch(this.value) {
+    case lightTheme:
+      html.style.color = colorBlack;
+      html.style.backgroundColor = colorWhite;
+      break;
+    case darkTheme:
+      html.style.color = colorWhite;
+      html.style.backgroundColor = colorBlack;
+      break;
+    default:
+      html.style.color = colorBlack;
+      html.style.backgroundColor = colorWhite;
+      break;
+  }
+  console.log("---End changeTheme()---");
+}
 /* 
    Change visibility to hidden
    and change src on all images
