@@ -3,7 +3,6 @@ html {
 }
 
 body {
-
 }
 
 #main {
@@ -24,13 +23,20 @@ body {
 label {
     margin-top: .5rem;
     margin-left: 25%;
-    font-size: 1.2rem;;
+    font-size: 1.2rem;
+    color: black;
 }
 
 #gifSearch {
     margin-left: 25%;
     margin-top: .5rem;
     font-size: 1.3rem;
+}
+
+#theme {
+  margin-left: 25%;
+  margin-top: .5rem;
+  font-size: 1.3rem;
 }
 
 #submit-button {
