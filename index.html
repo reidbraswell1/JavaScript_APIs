@@ -22,13 +22,13 @@
       </p>
       <div id="inputContainer">
         <!-- Add label, input, and button HERE -->
-        <form id="exercise-form" action="javascript:controller(gifSearch.value)" method="POST" onsubmit="return validateForm(gifSearch.value)">
+        <form id="exercise-form" action="javascript:controller(gifSearch.value,theme.value)" method="POST" onsubmit="return validateForm(gifSearch.value)">
           <label for="gifSearch">Giphy Search</label>
           <input id="gifSearch" type="text" required/>
           <label for="theme">Theme</label>
           <select id="theme" name="theme">
-            <option value="light" selected>Light Theme</option>
-            <option value="dark">Dark Theme</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
           </select>
           <button id="submit-button" type="submit">Submit</button>
         </form>
