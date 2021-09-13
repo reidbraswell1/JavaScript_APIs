@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html id="html" lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -25,6 +25,11 @@
         <form id="exercise-form" action="javascript:controller(gifSearch.value)" method="POST" onsubmit="return validateForm(gifSearch.value)">
           <label for="gifSearch">Giphy Search</label>
           <input id="gifSearch" type="text" required/>
+          <label for="theme">Theme</label>
+          <select id="theme" name="theme">
+            <option value="light" selected>Light Theme</option>
+            <option value="dark">Dark Theme</option>
+          </select>
           <button id="submit-button" type="submit">Submit</button>
         </form>
       </div>
